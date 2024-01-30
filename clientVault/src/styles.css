@@ -1,5 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 body{
     font-family: 'Poor Story', cursive, sans-serif;
-    
+}
+
+*{
+    font-family: 'Poor Story', cursive, sans-serif;
+}
+
+h1{
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+p{
+    font-weight: 200;
+    font-size: 1rem;
 }

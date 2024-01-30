@@ -18,4 +18,3 @@ import {MatIconModule} from '@angular/material/icon';
 export class HeaderComponent {
 
 }
-//todo: use angular material 

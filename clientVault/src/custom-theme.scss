@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -9,27 +8,61 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$clientVault-primary: mat.define-palette(mat.$indigo-palette);
-$clientVault-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+/* For use in src/lib/core/theming/_palette.scss */
+$custom-palette: (
+  50: #e0f0f0,
+  100: #b3d9d9,
+  200: #80c0c0,
+  300: #4da6a6,
+  400: #269393,
+  500: #008080,
+  600: #007878,
+  700: #006d6d,
+  800: #006363,
+  900: #005050,
+  A100: #83ffff,
+  A200: #50ffff,
+  A400: #1dffff,
+  A700: #03ffff,
+  contrast: (
+    50: #f0f0f0,
+    100: #d9d9d9,
+    200: #c0c0c0,
+    300: #a6a6a6,
+    400: #939393,
+    500: #808080,
+    600: #787878,
+    700: #6d6d6d,
+    800: #636363,
+    900: #505050,
+    A100: #f8c0c0,
+    A200: #f39292,
+    A400: #ff5353,
+    A700: #ff3a3a,
+  ),
+);
 
-// The warn palette is optional (defaults to red).
-$clientVault-warn: mat.define-palette(mat.$red-palette);
+$light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: mat.define-palette($custom-palette, 500),
+      accent: mat.define-palette($custom-palette, 300),
+    ),
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$clientVault-theme: mat.define-light-theme((
-  color: (
-    primary: $clientVault-primary,
-    accent: $clientVault-accent,
-    warn: $clientVault-warn,
   )
-));
+);
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include mat.all-component-themes($clientVault-theme);
+$dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: mat.define-palette(mat.$gray-palette, 100),
+      accent: mat.define-palette(mat.$gray-palette, 300),
+    ),
+  )
+);
 
+@include mat.all-component-themes($light-theme);
+
+.dark-mode {
+  @include mat.all-component-themes($dark-theme);
+}
